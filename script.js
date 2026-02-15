@@ -184,6 +184,13 @@
     });
   }
 
+  // Auto-burst confetti when page loads
+  window.addEventListener('load', ()=>{
+    setTimeout(()=>{
+      burst(W/2, H/2, 200);
+    }, 300);
+  });
+
   // If the page was opened with a name in the query, apply it
   updateFromQuery();
 })();
