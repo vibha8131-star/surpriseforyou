@@ -120,6 +120,65 @@
     });
   }
 
+  // --- TEDDY BEAR & HEARTS ---
+  const teddy = document.getElementById('teddy');
+  const loveMessage = document.getElementById('love-message');
+  const heartsContainer = document.getElementById('hearts-container');
+  let teddyClickCount = 0;
+
+  function createFloatingHeart(x, y) {
+    const heart = document.createElement('div');
+    heart.className = 'floating-heart';
+    heart.textContent = '❤️';
+    heart.style.left = x + 'px';
+    heart.style.top = y + 'px';
+    heartsContainer.appendChild(heart);
+    
+    setTimeout(() => heart.remove(), 2500);
+  }
+
+  function showLoveMessage() {
+    loveMessage.classList.remove('hidden');
+    playHeartBurst();
+    
+    setTimeout(() => {
+      loveMessage.classList.add('hidden');
+    }, 3000);
+  }
+
+  function playHeartBurst() {
+    for (let i = 0; i < 8; i++) {
+      setTimeout(() => {
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * window.innerHeight * 0.6;
+        createFloatingHeart(x, y);
+      }, i * 100);
+    }
+  }
+
+  if (teddy) {
+    teddy.addEventListener('click', (e) => {
+      teddyClickCount++;
+      
+      // Show hearts on click
+      const rect = e.target.getBoundingClientRect();
+      for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+          createFloatingHeart(
+            rect.left + Math.random() * rect.width,
+            rect.top + Math.random() * rect.height
+          );
+        }, i * 80);
+      }
+
+      // Show love message on 3rd click
+      if (teddyClickCount === 3) {
+        showLoveMessage();
+        teddyClickCount = 0; // Reset counter
+      }
+    });
+  }
+
   // If the page was opened with a name in the query, apply it
   updateFromQuery();
 })();

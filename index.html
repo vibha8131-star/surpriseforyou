@@ -9,12 +9,33 @@
   <body>
     <main class="card">
       <div class="left">
-        <div class="character" aria-hidden="true">
-          <div class="face">
-            <div class="eye left"></div>
-            <div class="eye right"></div>
-            <div class="mouth"></div>
+        <div class="character-container">
+          <div class="character" aria-hidden="true">
+            <div class="face">
+              <div class="eye left"></div>
+              <div class="eye right"></div>
+              <div class="mouth"></div>
+            </div>
           </div>
+        </div>
+        
+        <div class="teddy-container">
+          <div class="teddy" id="teddy">
+            <div class="teddy-head">
+              <div class="teddy-ear left"></div>
+              <div class="teddy-ear right"></div>
+              <div class="teddy-face">
+                <div class="teddy-eye left"></div>
+                <div class="teddy-eye right"></div>
+                <div class="teddy-snout"></div>
+              </div>
+            </div>
+            <div class="teddy-body">
+              <div class="teddy-arm left"></div>
+              <div class="teddy-arm right"></div>
+            </div>
+          </div>
+          <p class="teddy-hint">Click the teddy! 🐻</p>
         </div>
       </div>
       <div class="right">
@@ -45,6 +66,11 @@
     </main>
 
     <canvas id="confetti-canvas"></canvas>
+    <div id="hearts-container"></div>
+    <div id="love-message" class="love-message hidden">
+      <div class="heart-emoji">💕</div>
+      <p>I love you!</p>
+    </div>
 
     <script src="script.js"></script>
   </body>
