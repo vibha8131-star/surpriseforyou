@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Good Luck — You've Got This!</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="card">
+      <div class="left">
+        <div class="character" aria-hidden="true">
+          <div class="face">
+            <div class="eye left"></div>
+            <div class="eye right"></div>
+            <div class="mouth"></div>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <h1 id="greeting">Good luck on your exams!</h1>
+        <p id="sub">A little cheer to help you ace them — click the confetti!</p>
+
+        <div class="controls">
+          <label for="name">Make it personal:</label>
+          <input id="name" placeholder="Type a name (optional)" />
+          <button id="apply">Apply</button>
+        </div>
+
+        <div class="actions">
+          <button id="confettiBtn" class="primary">Throw confetti 🎉</button>
+          <button id="tipsBtn">Study tips 📝</button>
+          <button id="whatsappBtn" class="whatsapp">Share on WhatsApp</button>
+        </div>
+
+        <ul id="tips" class="hidden">
+          <li>Short, focused study sessions (25–50 min).</li>
+          <li>Practice past papers — timing matters.</li>
+          <li>Sleep well the night before — memory consolidates in sleep.</li>
+          <li>Take small breaks and hydrate.</li>
+        </ul>
+
+        <p class="share">Share this card via a link: <code id="shareLink">—</code></p>
+      </div>
+    </main>
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+:root{
+  --bg:#fff7f0;
+  --card:#ffffff;
+  --accent:#ff6b6b;
+  --muted:#6b6b6b;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  background:linear-gradient(180deg,var(--bg),#f0f8ff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.card{
+  width:920px;
+  max-width:96vw;
+  background:var(--card);
+  box-shadow:0 20px 40px rgba(2,6,23,0.12);
+  border-radius:18px;
+  display:flex;
+  overflow:hidden;
+}
+.left{flex:1;background:linear-gradient(135deg,#ffd1dc,#fff1f3);display:flex;align-items:center;justify-content:center;padding:36px}
+.right{flex:1;padding:36px}
+.character{width:240px;height:240px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff,#ffe0e8);display:flex;align-items:center;justify-content:center;position:relative;box-shadow:inset 0 -10px 30px rgba(0,0,0,0.04)}
+.face{width:150px;height:120px;position:relative}
+.eye{width:18px;height:18px;background:#3b3b3b;border-radius:50%;position:absolute;top:18px}
+.eye.left{left:18px}
+.eye.right{right:18px}
+.mouth{width:70px;height:30px;border-radius:20px;background:transparent;border-bottom:4px solid #3b3b3b;position:absolute;left:50%;transform:translateX(-50%);bottom:6px}
+h1{margin:0 0 8px;font-size:28px}
+p{color:var(--muted);margin-top:0}
+.controls{display:flex;gap:8px;align-items:center;margin:14px 0}
+input#name{padding:8px 10px;border-radius:8px;border:1px solid #eee;min-width:160px}
+button{cursor:pointer;padding:8px 12px;border-radius:10px;border:0;background:#eee}
+.primary{background:var(--accent);color:white;border:0}
+.actions{display:flex;gap:8px;margin-top:8px}
+button.whatsapp{background:#25d366;color:white;border:0}
+ul{margin-top:12px}
+.hidden{display:none}
+.share{margin-top:18px;font-size:13px;color:#444}
+code{background:#f4f4f6;padding:4px 8px;border-radius:6px}
+#confetti-canvas{position:fixed;left:0;top:0;pointer-events:none}
+
+@media (max-width:740px){
+  .card{flex-direction:column}
+  .left,.right{padding:18px}
+}
