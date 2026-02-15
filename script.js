@@ -112,7 +112,12 @@
     whatsappBtn.addEventListener('click', ()=>{
       // Use the current applied name from the greeting (fallback to Vedika)
       const textName = (new URLSearchParams(location.search).get('name')) || nameInput.value || 'Vedika';
-      const message = `Hey ${textName}! I made this little good-luck card for you — check it out:` + ' ' + location.href;
+      
+      // Build the live GitHub Pages URL with the name parameter
+      const liveUrl = 'https://vibha8131-star.github.io/surpriseforyou/';
+      const shareUrl = textName ? `${liveUrl}?name=${encodeURIComponent(textName)}` : liveUrl;
+      
+      const message = `Hey ${textName}! I made this little good-luck card for you — click the teddy bear at the end! 🐻💕` + '\n\n' + shareUrl;
       const encoded = encodeURIComponent(message);
       // wa.me with text param opens WhatsApp app on mobile or WhatsApp Web on desktop
       const waLink = `https://wa.me/?text=${encoded}`;
