@@ -29,24 +29,16 @@ body{
 .right{flex:1;padding:36px}
 .character{width:240px;height:240px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff,#ffe0e8);display:flex;align-items:center;justify-content:center;position:relative;box-shadow:inset 0 -10px 30px rgba(0,0,0,0.04);margin:0 auto}
 
-/* ------- TEDDY BEAR ------- */
+/* ------- HEART ------- */
 .teddy-container{text-align:center;width:100%}
-.teddy{width:120px;height:140px;margin:0 auto;position:relative;cursor:pointer;transition:transform 0.2s ease;animation:teddyWave 3s ease-in-out infinite}
-.teddy:hover{transform:scale(1.08)}
-.teddy-head{width:80px;height:80px;background:#8B6F47;border-radius:50%;position:absolute;left:20px;top:0;box-shadow:0 4px 8px rgba(0,0,0,0.1)}
-.teddy-ear{width:22px;height:22px;background:#8B6F47;border-radius:50%;position:absolute;top:-8px;box-shadow:inset -2px -2px 4px rgba(0,0,0,0.2)}
-.teddy-ear.left{left:12px}
-.teddy-ear.right{right:12px}
-.teddy-face{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:2;gap:8px}
-.teddy-eye{width:10px;height:10px;background:#2c2c2c;border-radius:50%;position:absolute;top:25px}
-.teddy-eye.left{left:18px}
-.teddy-eye.right{right:18px}
-.teddy-snout{width:32px;height:28px;background:#B8956A;border-radius:50%;position:absolute;bottom:12px}
-.teddy-body{width:64px;height:60px;background:#8B6F47;border-radius:0 0 35px 35px;position:absolute;bottom:0;left:28px;box-shadow:0 4px 8px rgba(0,0,0,0.1)}
-.teddy-arm{width:18px;height:24px;background:#8B6F47;border-radius:8px;position:absolute;top:50px}
-.teddy-arm.left{left:0;transform-origin:right center;animation:tedzyArmLeft 2s ease-in-out infinite}
-.teddy-arm.right{right:0;transform-origin:left center;animation:teddyArmRight 2s ease-in-out infinite}
-.teddy-hint{margin-top:12px;color:#8B6F47;font-size:13px;font-weight:600}
+.heart{width:140px;height:140px;margin:0 auto;position:relative;cursor:pointer;transition:transform 0.2s ease;animation:heartPulse 2s ease-in-out infinite}
+.heart:hover{transform:scale(1.12)}
+.heart-shape{width:100%;height:100%;position:relative}
+.heart-shape::before,
+.heart-shape::after{content:'';position:absolute;width:85px;height:140px;background:#ff6b6b;border-radius:85px 85px 0 0;left:0}
+.heart-shape::before{left:36px;transform:rotate(-45deg);transform-origin:0 100%}
+.heart-shape::after{left:0;transform:rotate(45deg);transform-origin:100% 100%}
+.teddy-hint{margin-top:12px;color:#ff6b6b;font-size:13px;font-weight:600}
 /* ------- HEARTS & LOVE MESSAGE ------- */
 #hearts-container{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:100}
 .floating-heart{position:absolute;font-size:20px;opacity:1;animation:floatUpAndFade 2.5s ease-in forwards;pointer-events:none}
@@ -75,9 +67,8 @@ body{
   75%{transform:scale(1.2);}
   100%{transform:scale(1);}
 }
-@keyframes teddyWave{0%{transform:translateY(0);} 50%{transform:translateY(-8px);} 100%{transform:translateY(0);}}
-@keyframes tedzyArmLeft{0%{transform:rotate(-20deg);} 50%{transform:rotate(-60deg);} 100%{transform:rotate(-20deg);}}
-@keyframes teddyArmRight{0%{transform:rotate(20deg);} 50%{transform:rotate(60deg);} 100%{transform:rotate(20deg);}}
+
+@keyframes heartPulse{0%{transform:scale(1);} 50%{transform:scale(1.08);} 100%{transform:scale(1);}}
 
 .face{width:150px;height:120px;position:relative}
 .eye{width:18px;height:18px;background:#3b3b3b;border-radius:50%;position:absolute;top:18px}
@@ -101,10 +92,9 @@ code{background:#f4f4f6;padding:4px 8px;border-radius:6px}
 @media (max-width:740px){
   .card{flex-direction:column}
   .left,.right{padding:18px}
-  .teddy{width:100px;height:120px}
-  .teddy-head{width:70px;height:70px;left:15px}
-  .teddy-ear{width:18px;height:18px;top:-6px}
-  .teddy-body{width:55px;height:50px;left:22.5px}
+  .heart{width:120px;height:120px}
+  .heart-shape::before,
+  .heart-shape::after{width:70px;height:120px}
   .love-message{padding:24px 20px;font-size:18px}
   .love-message p{font-size:20px}
   .heart-emoji{font-size:36px}
