@@ -4,7 +4,6 @@
   const sub = document.getElementById('sub');
   const tipsBtn = document.getElementById('tipsBtn');
   const tipsEl = document.getElementById('tips');
-  const confettiBtn = document.getElementById('confettiBtn');
 
   // Greeting is fixed for Vedika
   greeting.textContent = 'Good luck, Vedika!';
@@ -13,8 +12,6 @@
   tipsBtn.addEventListener('click', ()=>{
     tipsEl.classList.toggle('hidden');
   });
-
-  // --- CONFETTI ---
   const canvas = document.getElementById('confetti-canvas');
   const ctx = canvas.getContext('2d');
   let W = canvas.width = innerWidth;
@@ -68,29 +65,24 @@
   }
   animate();
 
-  confettiBtn.addEventListener('click', (e)=>{
-    const rect = e.target.getBoundingClientRect();
-    const x = rect.left + rect.width/2;
-    const y = rect.top + rect.height/2;
-    burst(x,y,160);
-  });
-
   // --- HEART & MESSAGES ---
   const heart = document.getElementById('teddy');
   const loveMessage = document.getElementById('love-message');
+  const bigHeartOverlay = document.getElementById('big-heart-overlay');
+  const bigHeartElement = document.querySelector('.big-heart');
   const longMessage = document.getElementById('long-message');
   const heartsContainer = document.getElementById('hearts-container');
   let heartClickCount = 0;
 
   function createFloatingHeart(x, y) {
-    const heart = document.createElement('div');
-    heart.className = 'floating-heart';
-    heart.textContent = '❤️';
-    heart.style.left = x + 'px';
-    heart.style.top = y + 'px';
-    heartsContainer.appendChild(heart);
+    const heartEl = document.createElement('div');
+    heartEl.className = 'floating-heart';
+    heartEl.textContent = '❤️';
+    heartEl.style.left = x + 'px';
+    heartEl.style.top = y + 'px';
+    heartsContainer.appendChild(heartEl);
     
-    setTimeout(() => heart.remove(), 2500);
+    setTimeout(() => heartEl.remove(), 2500);
   }
 
   function showLoveMessage() {
@@ -99,11 +91,16 @@
     
     setTimeout(() => {
       loveMessage.classList.add('hidden');
-      showLongMessage();
+      showBigHeartOverlay();
     }, 3000);
   }
 
+  function showBigHeartOverlay() {
+    bigHeartOverlay.classList.remove('hidden');
+  }
+
   function showLongMessage() {
+    bigHeartOverlay.classList.add('hidden');
     longMessage.classList.remove('hidden');
   }
 
@@ -137,6 +134,13 @@
         showLoveMessage();
         heartClickCount = 0; // Reset counter
       }
+    });
+  }
+
+  // Big heart click listener
+  if (bigHeartElement) {
+    bigHeartElement.addEventListener('click', () => {
+      showLongMessage();
     });
   }
 

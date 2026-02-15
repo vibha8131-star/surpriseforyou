@@ -5,15 +5,13 @@
   var greeting = document.getElementById('greeting');
   var sub = document.getElementById('sub');
   var tipsBtn = document.getElementById('tipsBtn');
-  var tipsEl = document.getElementById('tips');
-  var confettiBtn = document.getElementById('confettiBtn'); // Greeting is fixed for Vedika
+  var tipsEl = document.getElementById('tips'); // Greeting is fixed for Vedika
 
   greeting.textContent = 'Good luck, Vedika!';
   sub.textContent = "You've got this — go show them what you know!";
   tipsBtn.addEventListener('click', function () {
     tipsEl.classList.toggle('hidden');
-  }); // --- CONFETTI ---
-
+  });
   var canvas = document.getElementById('confetti-canvas');
   var ctx = canvas.getContext('2d');
   var W = canvas.width = innerWidth;
@@ -82,29 +80,25 @@
     requestAnimationFrame(animate);
   }
 
-  animate();
-  confettiBtn.addEventListener('click', function (e) {
-    var rect = e.target.getBoundingClientRect();
-    var x = rect.left + rect.width / 2;
-    var y = rect.top + rect.height / 2;
-    burst(x, y, 160);
-  }); // --- HEART & MESSAGES ---
+  animate(); // --- HEART & MESSAGES ---
 
   var heart = document.getElementById('teddy');
   var loveMessage = document.getElementById('love-message');
+  var bigHeartOverlay = document.getElementById('big-heart-overlay');
+  var bigHeartElement = document.querySelector('.big-heart');
   var longMessage = document.getElementById('long-message');
   var heartsContainer = document.getElementById('hearts-container');
   var heartClickCount = 0;
 
   function createFloatingHeart(x, y) {
-    var heart = document.createElement('div');
-    heart.className = 'floating-heart';
-    heart.textContent = '❤️';
-    heart.style.left = x + 'px';
-    heart.style.top = y + 'px';
-    heartsContainer.appendChild(heart);
+    var heartEl = document.createElement('div');
+    heartEl.className = 'floating-heart';
+    heartEl.textContent = '❤️';
+    heartEl.style.left = x + 'px';
+    heartEl.style.top = y + 'px';
+    heartsContainer.appendChild(heartEl);
     setTimeout(function () {
-      return heart.remove();
+      return heartEl.remove();
     }, 2500);
   }
 
@@ -113,11 +107,16 @@
     playHeartBurst();
     setTimeout(function () {
       loveMessage.classList.add('hidden');
-      showLongMessage();
+      showBigHeartOverlay();
     }, 3000);
   }
 
+  function showBigHeartOverlay() {
+    bigHeartOverlay.classList.remove('hidden');
+  }
+
   function showLongMessage() {
+    bigHeartOverlay.classList.add('hidden');
     longMessage.classList.remove('hidden');
   }
 
@@ -148,6 +147,13 @@
         showLoveMessage();
         heartClickCount = 0; // Reset counter
       }
+    });
+  } // Big heart click listener
+
+
+  if (bigHeartElement) {
+    bigHeartElement.addEventListener('click', function () {
+      showLongMessage();
     });
   } // Auto-burst confetti when page loads
 
