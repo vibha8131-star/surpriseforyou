@@ -35,10 +35,10 @@ body{
 .heart:hover{transform:scale(1.12)}
 .heart-shape{width:100%;height:100%;position:relative;display:block}
 .heart-shape::before,
-.heart-shape::after{content:'';position:absolute;width:86px;height:86px;background:linear-gradient(180deg,#ff7a7a,#ff4b6b);border-radius:50%;top:0}
-.heart-shape::before{left:26px;transform:rotate(-45deg);transform-origin:0 100%;box-shadow:inset -6px -6px 12px rgba(0,0,0,0.06), 0 8px 18px rgba(0,0,0,0.08)}
-.heart-shape::after{left:0;transform:rotate(45deg);transform-origin:100% 100%;box-shadow:inset 6px -6px 12px rgba(0,0,0,0.06), 0 8px 18px rgba(0,0,0,0.08)}
-.heart-tip{position:absolute;left:50%;bottom:0;transform:translateX(-50%) rotate(45deg);width:64px;height:64px;background:linear-gradient(180deg,#ff4b6b,#ff1f4a);box-shadow:0 8px 18px rgba(0,0,0,0.12);border-radius:8px;z-index:0}
+.heart-shape::after{content:'';position:absolute;width:110px;height:110px;background:linear-gradient(180deg,#ff8a8a,#ff4b6b);border-radius:50%;top:0}
+.heart-shape::before{left:30px;transform:rotate(-40deg);transform-origin:0 100%;box-shadow:inset -6px -8px 16px rgba(0,0,0,0.08), 0 10px 24px rgba(0,0,0,0.10);z-index:2}
+.heart-shape::after{left:-6px;transform:rotate(40deg);transform-origin:100% 100%;box-shadow:inset 6px -8px 16px rgba(0,0,0,0.08), 0 10px 24px rgba(0,0,0,0.10);z-index:2}
+.heart-tip{position:absolute;left:50%;bottom:6px;transform:translateX(-50%) rotate(45deg);width:86px;height:86px;background:linear-gradient(180deg,#ff5a6a,#ff2646);box-shadow:0 12px 28px rgba(0,0,0,0.14);border-radius:10px;z-index:1}
 .heart-shape::before,.heart-shape::after,.heart-tip{background-repeat:no-repeat}
 .teddy-hint{margin-top:12px;color:#ff6b6b;font-size:13px;font-weight:600;z-index:6;position:relative}
 .heart-instructions{z-index:6;position:relative}
