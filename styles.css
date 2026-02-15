@@ -31,14 +31,12 @@ body{
 
 /* ------- HEART ------- */
 .teddy-container{text-align:center;width:100%}
-.heart{width:140px;height:140px;margin:0 auto;position:relative;cursor:pointer;transition:transform 0.2s ease}
+.heart{width:100px;height:100px;margin:0 auto;position:relative;cursor:pointer;transition:transform 0.2s ease}
 .heart:hover{transform:scale(1.12)}
-.heart-shape{width:100%;height:100%;position:relative;display:block}
-.heart-shape::before,
-.heart-shape::after{content:'';position:absolute;width:110px;height:110px;background:linear-gradient(180deg,#ff8a8a,#ff4b6b);border-radius:50%;top:0}
-.heart-shape::before{left:30px;transform:rotate(-40deg);transform-origin:0 100%;box-shadow:inset -6px -8px 16px rgba(0,0,0,0.08), 0 10px 24px rgba(0,0,0,0.10);z-index:2}
-.heart-shape::after{left:-6px;transform:rotate(40deg);transform-origin:100% 100%;box-shadow:inset 6px -8px 16px rgba(0,0,0,0.08), 0 10px 24px rgba(0,0,0,0.10);z-index:2}
-.heart-tip{position:absolute;left:50%;bottom:6px;transform:translateX(-50%) rotate(45deg);width:86px;height:86px;background:linear-gradient(180deg,#ff5a6a,#ff2646);box-shadow:0 12px 28px rgba(0,0,0,0.14);border-radius:10px;z-index:1}
+.heart-shape{width:100%;height:100%;position:relative;display:block;background:#ff6b6b;clip-path:polygon(50% 100%, 85% 75%, 98% 60%, 100% 45%, 100% 30%, 85% 5%, 65% 10%, 50% 25%, 35% 10%, 15% 5%, 0% 30%, 0% 45%, 2% 60%, 15% 75%)}
+.heart-shape::before{display:none}
+.heart-shape::after{display:none}
+.heart-tip{display:none}
 .heart-shape::before,.heart-shape::after,.heart-tip{background-repeat:no-repeat}
 .teddy-hint{margin-top:12px;color:#ff6b6b;font-size:13px;font-weight:600;z-index:6;position:relative}
 .heart-instructions{z-index:6;position:relative}
@@ -101,11 +99,9 @@ body{
 .big-heart-container{text-align:center}
 .big-heart{width:140px;height:140px;margin:0 auto 30px;position:relative;cursor:pointer;animation:bigHeartFloat 2s ease-in-out infinite}
 .big-heart:hover{animation-play-state:paused;transform:scale(1.1)}
-.big-heart-shape{width:100%;height:100%;position:relative}
+.big-heart-shape{width:100%;height:100%;position:relative;background:#ff6b6b;clip-path:polygon(50% 100%, 85% 75%, 98% 60%, 100% 45%, 100% 30%, 85% 5%, 65% 10%, 50% 25%, 35% 10%, 15% 5%, 0% 30%, 0% 45%, 2% 60%, 15% 75%)}
 .big-heart-shape::before,
-.big-heart-shape::after{content:'';position:absolute;width:120px;height:200px;background:#ff6b6b;border-radius:120px 120px 0 0;left:0}
-.big-heart-shape::before{left:50px;transform:rotate(-45deg);transform-origin:0 100%}
-.big-heart-shape::after{left:0;transform:rotate(45deg);transform-origin:100% 100%}
+.big-heart-shape::after{display:none}
 .big-heart-instruction{font-size:18px;font-weight:600;color:#ff6b6b;margin:0;animation:pulse 1.5s ease-in-out infinite}
 
 /* small ready heart state */
@@ -139,9 +135,11 @@ p{color:var(--muted);margin-top:0}
 .heart-instructions strong{color:#ff6b6b;font-weight:600}
 .controls{display:flex;gap:8px;align-items:center;margin:14px 0}
 input#name{padding:8px 10px;border-radius:8px;border:1px solid #eee;min-width:160px}
-button{cursor:pointer;padding:8px 12px;border-radius:10px;border:0;background:#eee}
+button{cursor:pointer;padding:8px 12px;border-radius:10px;border:0;background:#eee;font-size:14px;transition:all 0.2s ease}
 .primary{background:var(--accent);color:white;border:0}
-.actions{display:flex;gap:8px;margin-top:8px}
+.actions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.whatsapp-btn{cursor:pointer;padding:8px 12px;border-radius:10px;border:0;background:#25d366;color:white;text-decoration:none;display:inline-flex;align-items:center;font-size:14px;font-weight:600;transition:all 0.2s ease}
+.whatsapp-btn:hover{background:#1eaa51;transform:scale(1.05)}
 button.whatsapp{background:#25d366;color:white;border:0}
 ul{margin-top:12px}
 .hidden{display:none}
@@ -150,17 +148,59 @@ code{background:#f4f4f6;padding:4px 8px;border-radius:6px}
 #confetti-canvas{position:fixed;left:0;top:0;pointer-events:none}
 
 @media (max-width:740px){
-  .card{flex-direction:column}
-  .left,.right{padding:18px}
-  .heart{width:120px;height:120px}
-  .heart-shape::before,
-  .heart-shape::after{width:70px;height:120px}
-  .love-message{padding:24px 20px;font-size:18px}
-  .love-message p{font-size:20px}
-  .heart-emoji{font-size:36px}
-  .heart-instructions{font-size:13px;padding:10px 12px}
-  .long-message{padding:30px 20px;max-width:90%;font-size:14px}
-  .long-message .message-content{font-size:14px}
-  .big-heart{width:150px;height:150px;margin:0 auto 20px}
-  .big-heart-instruction{font-size:16px}
+  body{padding:10px}
+  .card{flex-direction:column;border-radius:12px}
+  .left,.right{padding:14px}
+  .character{width:160px;height:160px}
+  .face{width:120px;height:90px}
+  .eye{width:14px;height:14px;top:10px}
+  .eye.left{left:10px}
+  .eye.right{right:10px}
+  .mouth{width:50px;height:20px;bottom:4px}
+  .heart{width:80px;height:80px}
+  .love-message{padding:20px 14px;font-size:16px;max-width:88%}
+  .love-message p{font-size:18px;margin-top:8px}
+  .heart-emoji{font-size:32px}
+  .heart-instructions{font-size:12px;padding:8px 10px;margin:8px 0}
+  .heart-instructions p{margin:2px 0}
+  .long-message{padding:20px 16px;max-width:92%;max-height:70vh;font-size:13px;border-radius:12px}
+  .long-message .message-content{font-size:13px;line-height:1.6}
+  .close-btn{font-size:24px;width:28px;height:28px;top:4px;right:8px}
+  .big-heart{width:100px;height:100px;margin:0 auto 20px}
+  .big-heart-instruction{font-size:14px}
+  .actions{flex-direction:column;gap:6px}
+  button,.whatsapp-btn{width:100%;padding:10px 12px;font-size:13px}
+  h1{font-size:20px;margin-bottom:4px}
+  p{font-size:13px}
+  .tips-graphic svg{width:100%;height:auto}
+  .cat-projection{right:10px;bottom:10px;font-size:12px}
+  .cat-emoji{font-size:20px}
+  .cat-text{font-size:12px}
+  .billu-text{font-size:14px}
+  .billu-cat{font-size:18px}
+}
+
+@media (max-width:480px){
+  body{padding:6px}
+  .card{flex-direction:column;border-radius:10px;width:100%}
+  .left,.right{padding:10px}
+  .character{width:120px;height:120px}
+  .face{width:100px;height:75px}
+  .eye{width:12px;height:12px;top:8px}
+  .eye.left{left:8px}
+  .eye.right{right:8px}
+  .mouth{width:40px;height:16px;bottom:2px;border-bottom:3px solid #3b3b3b}
+  .heart{width:70px;height:70px}
+  .teddy-hint{font-size:11px;margin-top:6px}
+  .love-message{padding:16px 12px}
+  .love-message p{font-size:16px}
+  .heart-emoji{font-size:28px}
+  .heart-instructions{font-size:11px;padding:6px 8px}
+  .long-message{padding:16px 12px;max-width:95%;max-height:75vh}
+  .long-message .message-content{font-size:12px;line-height:1.5}
+  .big-heart{width:90px;height:90px}
+  .big-heart-instruction{font-size:13px}
+  button,.whatsapp-btn{font-size:12px;padding:8px 10px}
+  h1{font-size:18px;margin-bottom:2px}
+  #tips-graphic{margin-top:8px}
 }

@@ -182,3 +182,5 @@ function closeLongMessage() {
   const cat = document.getElementById('cat-projection');
   if(cat) cat.classList.add('hidden');
 }
+
+
