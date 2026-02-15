@@ -117,7 +117,12 @@
 
   function showLongMessage() {
     bigHeartOverlay.classList.add('hidden');
-    longMessage.classList.remove('hidden');
+    longMessage.classList.remove('hidden'); // blur the main content and show cat projection
+
+    var card = document.querySelector('.card');
+    if (card) card.classList.add('blurred');
+    var cat = document.getElementById('cat-projection');
+    if (cat) cat.classList.remove('hidden');
   }
 
   function playHeartBurst() {
@@ -160,7 +165,21 @@
 
   window.addEventListener('load', function () {
     setTimeout(function () {
-      burst(W / 2, H / 2, 200);
+      burst(W / 2, H / 2, 200); // after confetti, show tips graphic then reveal heart instructions
+
+      setTimeout(function () {
+        var tipsGraphic = document.getElementById('tips-graphic');
+        if (tipsGraphic) tipsGraphic.classList.remove('hidden'); // reveal the small instruction and make heart ready/pulsing
+
+        setTimeout(function () {
+          var instr = document.querySelector('.heart-instructions');
+          var hint = document.querySelector('.teddy-hint');
+          var heartEl = document.getElementById('teddy');
+          if (instr) instr.classList.remove('hidden');
+          if (hint) hint.classList.remove('hidden');
+          if (heartEl) heartEl.classList.add('ready');
+        }, 800);
+      }, 600);
     }, 300);
   });
 })(); // Function to close the long message popup
@@ -168,5 +187,10 @@
 
 function closeLongMessage() {
   var longMessage = document.getElementById('long-message');
-  longMessage.classList.add('hidden');
+  longMessage.classList.add('hidden'); // remove blur and hide cat projection
+
+  var card = document.querySelector('.card');
+  if (card) card.classList.remove('blurred');
+  var cat = document.getElementById('cat-projection');
+  if (cat) cat.classList.add('hidden');
 }

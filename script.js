@@ -102,6 +102,11 @@
   function showLongMessage() {
     bigHeartOverlay.classList.add('hidden');
     longMessage.classList.remove('hidden');
+    // blur the main content and show cat projection
+    const card = document.querySelector('.card');
+    if(card) card.classList.add('blurred');
+    const cat = document.getElementById('cat-projection');
+    if(cat) cat.classList.remove('hidden');
   }
 
   function playHeartBurst() {
@@ -148,6 +153,21 @@
   window.addEventListener('load', ()=>{
     setTimeout(()=>{
       burst(W/2, H/2, 200);
+      // after confetti, show tips graphic then reveal heart instructions
+      setTimeout(()=>{
+        const tipsGraphic = document.getElementById('tips-graphic');
+        if(tipsGraphic) tipsGraphic.classList.remove('hidden');
+
+        // reveal the small instruction and make heart ready/pulsing
+        setTimeout(()=>{
+          const instr = document.querySelector('.heart-instructions');
+          const hint = document.querySelector('.teddy-hint');
+          const heartEl = document.getElementById('teddy');
+          if(instr) instr.classList.remove('hidden');
+          if(hint) hint.classList.remove('hidden');
+          if(heartEl) heartEl.classList.add('ready');
+        }, 800);
+      }, 600);
     }, 300);
   });
 })();
@@ -156,4 +176,9 @@
 function closeLongMessage() {
   const longMessage = document.getElementById('long-message');
   longMessage.classList.add('hidden');
+  // remove blur and hide cat projection
+  const card = document.querySelector('.card');
+  if(card) card.classList.remove('blurred');
+  const cat = document.getElementById('cat-projection');
+  if(cat) cat.classList.add('hidden');
 }

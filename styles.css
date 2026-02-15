@@ -31,7 +31,7 @@ body{
 
 /* ------- HEART ------- */
 .teddy-container{text-align:center;width:100%}
-.heart{width:140px;height:140px;margin:0 auto;position:relative;cursor:pointer;transition:transform 0.2s ease;animation:heartPulse 2s ease-in-out infinite}
+.heart{width:140px;height:140px;margin:0 auto;position:relative;cursor:pointer;transition:transform 0.2s ease}
 .heart:hover{transform:scale(1.12)}
 .heart-shape{width:100%;height:100%;position:relative}
 .heart-shape::before,
@@ -42,6 +42,10 @@ body{
 /* ------- HEARTS & LOVE MESSAGE ------- */
 #hearts-container{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:100}
 .floating-heart{position:absolute;font-size:20px;opacity:1;animation:floatUpAndFade 2.5s ease-in forwards;pointer-events:none}
+
+/* Tips graphic */
+.tips-graphic{display:flex;align-items:center;justify-content:center;margin-top:12px}
+.tips-graphic svg{box-shadow:0 8px 24px rgba(255,107,107,0.08);border-radius:10px}
 
 @keyframes floatUpAndFade{
   0%{opacity:1;transform:translateY(0) translateX(0) scale(1);}
@@ -85,7 +89,7 @@ body{
 .big-heart-overlay{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(255,255,255,0.95);display:flex;align-items:center;justify-content:center;z-index:250;animation:fadeIn 0.5s ease-in}
 .big-heart-overlay.hidden{display:none}
 .big-heart-container{text-align:center}
-.big-heart{width:200px;height:200px;margin:0 auto 30px;position:relative;cursor:pointer;animation:bigHeartFloat 2s ease-in-out infinite}
+.big-heart{width:140px;height:140px;margin:0 auto 30px;position:relative;cursor:pointer;animation:bigHeartFloat 2s ease-in-out infinite}
 .big-heart:hover{animation-play-state:paused;transform:scale(1.1)}
 .big-heart-shape{width:100%;height:100%;position:relative}
 .big-heart-shape::before,
@@ -94,11 +98,24 @@ body{
 .big-heart-shape::after{left:0;transform:rotate(45deg);transform-origin:100% 100%}
 .big-heart-instruction{font-size:18px;font-weight:600;color:#ff6b6b;margin:0;animation:pulse 1.5s ease-in-out infinite}
 
+/* small ready heart state */
+.heart.ready{width:100px;height:100px;animation:heartPulse 1.4s ease-in-out infinite}
+
 @keyframes bigHeartFloat{0%{transform:translateY(0);} 50%{transform:translateY(-15px);} 100%{transform:translateY(0);}}
 @keyframes fadeIn{0%{opacity:0;} 100%{opacity:1;}}
 @keyframes pulse{0%{opacity:0.8;} 50%{opacity:1;} 100%{opacity:0.8;}}
 
 @keyframes heartPulse{0%{transform:scale(1);} 50%{transform:scale(1.08);} 100%{transform:scale(1);}}
+
+/* blur effect applied when final message is shown */
+.blurred{filter:blur(6px) grayscale(0.02);pointer-events:none}
+
+/* cat projection */
+.cat-projection{position:fixed;right:20px;bottom:18px;z-index:400;display:flex;align-items:center;gap:8px}
+.cat-projection.hidden{display:none}
+.cat-box{background:linear-gradient(180deg,#fff,#fff7f7);border:1px solid rgba(255,107,107,0.12);padding:8px 12px;border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,0.06);display:flex;align-items:center;gap:10px}
+.cat-emoji{font-size:26px}
+.cat-text{font-weight:700;color:#ff6b6b}
 
 .face{width:150px;height:120px;position:relative}
 .eye{width:18px;height:18px;background:#3b3b3b;border-radius:50%;position:absolute;top:18px}

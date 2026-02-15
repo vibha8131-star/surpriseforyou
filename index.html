@@ -23,7 +23,7 @@
           <div class="heart" id="teddy">
             <div class="heart-shape"></div>
           </div>
-          <p class="teddy-hint">Click the heart! 💖</p>
+          <p class="teddy-hint hidden">Click the heart! 💖</p>
         </div>
       </div>
       <div class="right">
@@ -39,12 +39,18 @@
           <button id="tipsBtn">Study tips 📝</button>
         </div>
 
-        <ul id="tips" class="hidden">
-          <li>Short, focused study sessions (25–50 min).</li>
-          <li>Practice past papers — timing matters.</li>
-          <li>Sleep well the night before — memory consolidates in sleep.</li>
-          <li>Take small breaks and hydrate.</li>
-        </ul>
+        <div id="tips-graphic" class="tips-graphic hidden">
+          <svg width="320" height="180" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="0" y="0" width="320" height="180" rx="12" fill="#fff" stroke="#ffe6ef" />
+            <g font-family="Inter, Arial, sans-serif" fill="#333">
+              <text x="20" y="40" font-size="16" font-weight="700" fill="#ff6b6b">Study tips</text>
+              <text x="20" y="70" font-size="13">• Short, focused sessions (25–50 min)</text>
+              <text x="20" y="96" font-size="13">• Practice past papers — time yourself</text>
+              <text x="20" y="122" font-size="13">• Sleep well the night before</text>
+              <text x="20" y="148" font-size="13">• Take breaks & hydrate</text>
+            </g>
+          </svg>
+        </div>
       </div>
     </main>
 
@@ -69,6 +75,13 @@
       <button class="close-btn" onclick="closeLongMessage()">×</button>
       <div class="message-content">
         <p>I never thought I'd fall for someone who isn't even in the same city as me but here i am somewhere between our late night talks and random convo i started falling for you i still don't know what what the future holds but i know I'd want want you in mine no matter the distance</p>
+      </div>
+    </div>
+    
+    <div id="cat-projection" class="cat-projection hidden">
+      <div class="cat-box">
+        <div class="cat-emoji">🐱</div>
+        <div class="cat-text">Billu loves you</div>
       </div>
     </div>
 
