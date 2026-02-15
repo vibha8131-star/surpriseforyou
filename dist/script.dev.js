@@ -1,50 +1,18 @@
 "use strict";
 
-// Simple confetti implementation and personalization handling
+// Simple confetti implementation and interactions for Vedika
 (function () {
-  var qs = new URLSearchParams(location.search);
-  var nameInput = document.getElementById('name');
-  var applyBtn = document.getElementById('apply');
   var greeting = document.getElementById('greeting');
   var sub = document.getElementById('sub');
   var tipsBtn = document.getElementById('tipsBtn');
   var tipsEl = document.getElementById('tips');
-  var confettiBtn = document.getElementById('confettiBtn');
-  var shareLinkEl = document.getElementById('shareLink');
+  var confettiBtn = document.getElementById('confettiBtn'); // Greeting is fixed for Vedika
 
-  function updateFromQuery() {
-    // default to Vedika when no name parameter is provided
-    var paramName = qs.get('name');
-    var name = paramName !== null ? paramName : 'Vedika';
-    applyName(name);
-    nameInput.value = name;
-    updateShareLink();
-  }
-
-  function applyName(name) {
-    greeting.textContent = name ? "Good luck, ".concat(name, "!") : 'Good luck on your exams!';
-    sub.textContent = name ? "You've got this, ".concat(name, " \u2014 go show them what you know!") : 'A little cheer to help you ace them — click the confetti!';
-  }
-
-  applyBtn.addEventListener('click', function () {
-    var name = nameInput.value.trim(); // update query string without reloading
-
-    var u = new URL(location.href);
-    if (name) u.searchParams.set('name', name);else u.searchParams["delete"]('name');
-    history.replaceState(null, '', u.toString());
-    applyName(name);
-    updateShareLink();
-  });
+  greeting.textContent = 'Good luck, Vedika!';
+  sub.textContent = "You've got this — go show them what you know!";
   tipsBtn.addEventListener('click', function () {
     tipsEl.classList.toggle('hidden');
-  });
-
-  function updateShareLink() {
-    // show full absolute link so user can copy and send
-    var href = location.href;
-    shareLinkEl.textContent = href;
-  } // --- CONFETTI ---
-
+  }); // --- CONFETTI ---
 
   var canvas = document.getElementById('confetti-canvas');
   var ctx = canvas.getContext('2d');
@@ -120,30 +88,13 @@
     var x = rect.left + rect.width / 2;
     var y = rect.top + rect.height / 2;
     burst(x, y, 160);
-  }); // WhatsApp share button: opens WhatsApp Web/app with a prefilled message
+  }); // --- HEART & MESSAGES ---
 
-  var whatsappBtn = document.getElementById('whatsappBtn');
-
-  if (whatsappBtn) {
-    whatsappBtn.addEventListener('click', function () {
-      // Use the current applied name from the greeting (fallback to Vedika)
-      var textName = new URLSearchParams(location.search).get('name') || nameInput.value || 'Vedika'; // Build the live GitHub Pages URL with the name parameter
-
-      var liveUrl = 'https://vibha8131-star.github.io/surpriseforyou/';
-      var shareUrl = textName ? "".concat(liveUrl, "?name=").concat(encodeURIComponent(textName)) : liveUrl;
-      var message = "Hey ".concat(textName, "! I made this little good-luck card for you \u2014 click the teddy bear at the end! \uD83D\uDC3B\uD83D\uDC95") + '\n\n' + shareUrl;
-      var encoded = encodeURIComponent(message); // wa.me with text param opens WhatsApp app on mobile or WhatsApp Web on desktop
-
-      var waLink = "https://wa.me/?text=".concat(encoded);
-      window.open(waLink, '_blank');
-    });
-  } // --- TEDDY BEAR & HEARTS ---
-
-
-  var teddy = document.getElementById('teddy');
+  var heart = document.getElementById('teddy');
   var loveMessage = document.getElementById('love-message');
+  var longMessage = document.getElementById('long-message');
   var heartsContainer = document.getElementById('hearts-container');
-  var teddyClickCount = 0;
+  var heartClickCount = 0;
 
   function createFloatingHeart(x, y) {
     var heart = document.createElement('div');
@@ -162,7 +113,12 @@
     playHeartBurst();
     setTimeout(function () {
       loveMessage.classList.add('hidden');
+      showLongMessage();
     }, 3000);
+  }
+
+  function showLongMessage() {
+    longMessage.classList.remove('hidden');
   }
 
   function playHeartBurst() {
@@ -175,9 +131,9 @@
     }
   }
 
-  if (teddy) {
-    teddy.addEventListener('click', function (e) {
-      teddyClickCount++; // Show hearts on click
+  if (heart) {
+    heart.addEventListener('click', function (e) {
+      heartClickCount++; // Show hearts on click
 
       var rect = e.target.getBoundingClientRect();
 
@@ -188,9 +144,9 @@
       } // Show love message on 3rd click
 
 
-      if (teddyClickCount === 3) {
+      if (heartClickCount === 3) {
         showLoveMessage();
-        teddyClickCount = 0; // Reset counter
+        heartClickCount = 0; // Reset counter
       }
     });
   } // Auto-burst confetti when page loads
@@ -200,7 +156,11 @@
     setTimeout(function () {
       burst(W / 2, H / 2, 200);
     }, 300);
-  }); // If the page was opened with a name in the query, apply it
+  });
+})(); // Function to close the long message popup
 
-  updateFromQuery();
-})();
+
+function closeLongMessage() {
+  var longMessage = document.getElementById('long-message');
+  longMessage.classList.add('hidden');
+}

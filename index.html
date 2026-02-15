@@ -27,19 +27,17 @@
         </div>
       </div>
       <div class="right">
-        <h1 id="greeting">Good luck on your exams!</h1>
-        <p id="sub">A little cheer to help you ace them — click the confetti!</p>
-
-        <div class="controls">
-          <label for="name">Make it personal:</label>
-          <input id="name" placeholder="Type a name (optional)" />
-          <button id="apply">Apply</button>
+        <h1 id="greeting">Good luck, Vedika!</h1>
+        <p id="sub">You've got this — go show them what you know!</p>
+        
+        <div class="heart-instructions">
+          <p><strong>✨ Special surprise inside:</strong></p>
+          <p>Click the heart on the left <strong>3 times</strong> to unlock a message for you! 💌</p>
         </div>
 
         <div class="actions">
           <button id="confettiBtn" class="primary">Throw confetti 🎉</button>
           <button id="tipsBtn">Study tips 📝</button>
-          <button id="whatsappBtn" class="whatsapp">Share on WhatsApp</button>
         </div>
 
         <ul id="tips" class="hidden">
@@ -48,16 +46,22 @@
           <li>Sleep well the night before — memory consolidates in sleep.</li>
           <li>Take small breaks and hydrate.</li>
         </ul>
-
-        <p class="share">Share this card via a link: <code id="shareLink">—</code></p>
       </div>
     </main>
 
     <canvas id="confetti-canvas"></canvas>
     <div id="hearts-container"></div>
+    
     <div id="love-message" class="love-message hidden">
       <div class="heart-emoji">💕</div>
       <p>I love you!</p>
+    </div>
+
+    <div id="long-message" class="long-message hidden">
+      <button class="close-btn" onclick="closeLongMessage()">×</button>
+      <div class="message-content">
+        <p>I never thought I'd fall for someone who isn't even in the same city as me but here i am somewhere between our late night talks and random convo i started falling for you i still don't know what what the future holds but i know I'd want want you in mine no matter the distance</p>
+      </div>
     </div>
 
     <script src="script.js"></script>

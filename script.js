@@ -1,49 +1,18 @@
-// Simple confetti implementation and personalization handling
+// Simple confetti implementation and interactions for Vedika
 (() => {
-  const qs = new URLSearchParams(location.search);
-  const nameInput = document.getElementById('name');
-  const applyBtn = document.getElementById('apply');
   const greeting = document.getElementById('greeting');
   const sub = document.getElementById('sub');
   const tipsBtn = document.getElementById('tipsBtn');
   const tipsEl = document.getElementById('tips');
   const confettiBtn = document.getElementById('confettiBtn');
-  const shareLinkEl = document.getElementById('shareLink');
 
-  function updateFromQuery(){
-    // default to Vedika when no name parameter is provided
-    const paramName = qs.get('name');
-    const name = paramName !== null ? paramName : 'Vedika';
-    applyName(name);
-    nameInput.value = name;
-    updateShareLink();
-  }
-
-  function applyName(name){
-    greeting.textContent = name ? `Good luck, ${name}!` : 'Good luck on your exams!';
-    sub.textContent = name ? `You've got this, ${name} — go show them what you know!` : 'A little cheer to help you ace them — click the confetti!';
-  }
-
-  applyBtn.addEventListener('click', ()=>{
-    const name = nameInput.value.trim();
-    // update query string without reloading
-    const u = new URL(location.href);
-    if(name) u.searchParams.set('name', name);
-    else u.searchParams.delete('name');
-    history.replaceState(null, '', u.toString());
-    applyName(name);
-    updateShareLink();
-  });
+  // Greeting is fixed for Vedika
+  greeting.textContent = 'Good luck, Vedika!';
+  sub.textContent = "You've got this — go show them what you know!";
 
   tipsBtn.addEventListener('click', ()=>{
     tipsEl.classList.toggle('hidden');
   });
-
-  function updateShareLink(){
-    // show full absolute link so user can copy and send
-    const href = location.href;
-    shareLinkEl.textContent = href;
-  }
 
   // --- CONFETTI ---
   const canvas = document.getElementById('confetti-canvas');
@@ -106,30 +75,12 @@
     burst(x,y,160);
   });
 
-  // WhatsApp share button: opens WhatsApp Web/app with a prefilled message
-  const whatsappBtn = document.getElementById('whatsappBtn');
-  if(whatsappBtn){
-    whatsappBtn.addEventListener('click', ()=>{
-      // Use the current applied name from the greeting (fallback to Vedika)
-      const textName = (new URLSearchParams(location.search).get('name')) || nameInput.value || 'Vedika';
-      
-      // Build the live GitHub Pages URL with the name parameter
-      const liveUrl = 'https://vibha8131-star.github.io/surpriseforyou/';
-      const shareUrl = textName ? `${liveUrl}?name=${encodeURIComponent(textName)}` : liveUrl;
-      
-      const message = `Hey ${textName}! I made this little good-luck card for you — click the teddy bear at the end! 🐻💕` + '\n\n' + shareUrl;
-      const encoded = encodeURIComponent(message);
-      // wa.me with text param opens WhatsApp app on mobile or WhatsApp Web on desktop
-      const waLink = `https://wa.me/?text=${encoded}`;
-      window.open(waLink, '_blank');
-    });
-  }
-
-  // --- TEDDY BEAR & HEARTS ---
-  const teddy = document.getElementById('teddy');
+  // --- HEART & MESSAGES ---
+  const heart = document.getElementById('teddy');
   const loveMessage = document.getElementById('love-message');
+  const longMessage = document.getElementById('long-message');
   const heartsContainer = document.getElementById('hearts-container');
-  let teddyClickCount = 0;
+  let heartClickCount = 0;
 
   function createFloatingHeart(x, y) {
     const heart = document.createElement('div');
@@ -148,7 +99,12 @@
     
     setTimeout(() => {
       loveMessage.classList.add('hidden');
+      showLongMessage();
     }, 3000);
+  }
+
+  function showLongMessage() {
+    longMessage.classList.remove('hidden');
   }
 
   function playHeartBurst() {
@@ -161,9 +117,9 @@
     }
   }
 
-  if (teddy) {
-    teddy.addEventListener('click', (e) => {
-      teddyClickCount++;
+  if (heart) {
+    heart.addEventListener('click', (e) => {
+      heartClickCount++;
       
       // Show hearts on click
       const rect = e.target.getBoundingClientRect();
@@ -177,9 +133,9 @@
       }
 
       // Show love message on 3rd click
-      if (teddyClickCount === 3) {
+      if (heartClickCount === 3) {
         showLoveMessage();
-        teddyClickCount = 0; // Reset counter
+        heartClickCount = 0; // Reset counter
       }
     });
   }
@@ -190,7 +146,10 @@
       burst(W/2, H/2, 200);
     }, 300);
   });
-
-  // If the page was opened with a name in the query, apply it
-  updateFromQuery();
 })();
+
+// Function to close the long message popup
+function closeLongMessage() {
+  const longMessage = document.getElementById('long-message');
+  longMessage.classList.add('hidden');
+}
